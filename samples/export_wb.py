@@ -84,7 +84,7 @@ def main():
             download = functools.partial(download_pdf, server, tempdir)
 
             downloaded = (download(x) for x in get_list(args.resource_id))
-            output = reduce(combine_into, downloaded, PyPDF2.PdfFileMerger())
+            output = functools.reduce(combine_into, downloaded, PyPDF2.PdfFileMerger())
             with file(args.file, 'wb') as f:
                 output.write(f)
     finally:
